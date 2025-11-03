@@ -789,9 +789,9 @@ class Message(Object, Update):
             gift = None
             screenshot_taken = None
             paid_message_price_changed = None
-            todo_tasks_added = None
-            todo_tasks_completed = None
-            todo_tasks_incompleted = None
+            # todo_tasks_added = None
+            # todo_tasks_completed = None
+            # todo_tasks_incompleted = None
 
             service_type = None
             chat_join_type = None
@@ -1320,7 +1320,10 @@ class Message(Object, Update):
                             parsed_message.topic = types.ForumTopic._parse(topics[thread_id])
                         else:
                             try:
-                                msg = await client.get_messages(parsed_message.chat.id,message.id)
+                                msg = await client.get_messages(
+                                    parsed_message.chat.id,
+                                    message.id
+                                )
                                 if getattr(msg, "topic"):
                                     parsed_message.topic = msg.topic
                             except Exception:
